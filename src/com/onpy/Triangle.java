@@ -1,9 +1,12 @@
 package com.onpy;
 
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class triangle {
-    int numberTriangle;
+public class Triangle {
+    long numberTriangle;
     double x1;
     double x2;
     double x3;
@@ -12,7 +15,10 @@ public class triangle {
     double betta;
     double gamma;
     double square;
-    int isosceles = 0;
+    long isosceles = 0;
+    String y;
+
+    private Object triangle;
 
     public void setX1(double x1) {
         double trueSide = x1;
@@ -21,7 +27,7 @@ public class triangle {
             Scanner scan = null;
             trueSide = scan.nextDouble();
         }
-        this.x1 = trueSide;
+        this.x1 = (int) trueSide;
     }
 
     public double getX1() {
@@ -54,5 +60,17 @@ public class triangle {
 
     public double getX3() {
         return x3;
+    }
+
+    public double getNumTriangle() {
+        return numberTriangle;
+    }
+
+    public void setY(String y) {
+        this.y = y;
+    }
+
+    public String getY() {
+        return y;
     }
 }
