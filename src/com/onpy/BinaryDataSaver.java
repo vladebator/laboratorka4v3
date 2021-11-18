@@ -1,7 +1,6 @@
 package com.onpy;
 
 import java.io.*;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,8 +13,8 @@ public class BinaryDataSaver {
     public static void save(ArrayList<Triangle> triangles, String fileWay) throws IOException {
 
         byte[] bytesToWrite;
-        byte[] numberTriangle, x1, x2, x3, perimeter, alpha, betta, gamma, square, razd;
-        String razdel = "&";
+        byte[] numberTriangle, x1, x2, x3, razd;
+        String razdel = "∎";
 
         for (Triangle object : triangles) {
 
@@ -24,7 +23,7 @@ public class BinaryDataSaver {
             numberTriangle = s1.getBytes(StandardCharsets.UTF_8);
 
             // Сторона  №1 треугольника
-            String s2 = Double.toHexString(object.getX1()); // todo get hex value from int (P.S. Speranskyy) =)
+            String s2 = Double.toHexString(object.getX1()); // todo get hex value from int (by Speranskyy) =)
             x1 = s2.getBytes(StandardCharsets.UTF_8);
 
             // Сторона №2 треугольника

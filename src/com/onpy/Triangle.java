@@ -1,8 +1,5 @@
 package com.onpy;
 
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Triangle {
@@ -17,8 +14,6 @@ public class Triangle {
     double square;
     long isosceles = 0;
     String y;
-
-    private Object triangle;
 
     public void setX1(double x1) {
         double trueSide = x1;
