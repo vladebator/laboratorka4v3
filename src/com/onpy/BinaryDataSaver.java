@@ -154,4 +154,8 @@ public class BinaryDataSaver {
             x3 = 0;
         }
     }
+    void serializeFile(String fileName) throws IOException {
+        Triangle saveToFile = new Triangle();
+        saveToFile.serialize(this, fileName);
+    }
 }

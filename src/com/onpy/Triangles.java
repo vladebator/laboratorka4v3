@@ -1,5 +1,6 @@
-package com.onpy;
 
+package com.onpy;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,6 +89,28 @@ public class Triangles {
             //BinaryDataSaver.save(triangleArrayList, wayToFile);
             System.out.println("Файл успешно сохранён!");
         }
-        return;
+    }
+
+    public static void serializeFile(String serializeFileName) {
+        Triangle saveToFile = new Triangle();
+        saveToFile.serialize(this, fileName);
+    }
+
+    public static void deserializeFile(String deserializeFileName) {
+        FileWork loadToBase = new FileWork();
+        ExamResults er = new ExamResults(loadToBase.deserialize(fileName));
+        this.examResults = er.examResults;
+        this.description = er.description;
+    }
+
+    public static void JacksonSerializeFile(String jacksonSerializeFileName) {
+        FileWork saveToFile = new FileWork();
+        saveToFile.jacksonSerialize(this, fileName);
+        examResults.clear();
+    }
+
+    public static void jacksonDeserializeFile(String jacksonDeserializeFileName) {
+        FileWork loadToBase = new FileWork();
+        this.examResults = loadToBase.jacksonDeSerialize(examResults, fileName);
     }
 }

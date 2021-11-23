@@ -15,6 +15,7 @@ public class Triangle {
     long isosceles = 0;
     String y;
 
+
     public void setX1(double x1) {
         double trueSide = x1;
         if(trueSide <= 0) {
@@ -68,4 +69,5 @@ public class Triangle {
     public String getY() {
         return y;
     }
+
 }
