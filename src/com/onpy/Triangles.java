@@ -1,15 +1,69 @@
-
 package com.onpy;
+
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.IOException;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.Math.pow;
 
-public class Triangles {
+public class Triangles implements Serializable {
     int inCountTriangle = 2;
     int numberTriangle = 0;
+
+    @JsonProperty("triangles")
+    ArrayList<Triangle> triangles;
+    @JsonProperty("description")
+    String description;
+    static final long serialVersionUID = 656565665L;
+
+    public Triangles() {
+        description = LocalDate.now().toString();
+        this.triangles = new ArrayList<>();
+    }
+
+    public Triangles(Triangles triangles) {
+        this.triangles = triangles.triangles;
+        this.description = triangles.description;
+    }
+
+    void add(Triangle triangle) {
+        triangles.add(triangle);
+    }
+
+    @Override
+    public String toString() {
+        return "Triangles{" +
+                triangles +
+                '}';
+    }
+
+    void serializeFile(String fileName) throws IOException {
+        FileWork saveToFile = new FileWork();
+        saveToFile.serialize(this, fileName);
+    }
+
+    void deserializeFile(String fileName) throws IOException {
+        FileWork loadToBase = new FileWork();
+        Triangles er = new Triangles(loadToBase.deserialize(fileName));
+        this.triangles = er.triangles;
+        this.description = er.description;
+    }
+
+    void JacksonSerializeFile(String fileName) throws IOException {
+        FileWork saveToFile = new FileWork();
+        saveToFile.jacksonSerialize(this, fileName);
+        triangles.clear();
+    }
+
+    void jacksonDeserializeFile(String fileName) throws IOException {
+        FileWork loadToBase = new FileWork();
+        this.triangles = loadToBase.jacksonDeSerialize(triangles, fileName);
+    }
 
     public void dataInput() throws IOException {
 
@@ -25,7 +79,7 @@ public class Triangles {
             triangles[i].x2 = scan.nextInt();
             System.out.print("Введите cторону Х3 для треугольника №" + (i + 1) + ": ");
             triangles[i].x3 = scan.nextInt();
-            triangles[i].numberTriangle = ++numberTriangle;
+            /*triangles[i].numberTriangle = ++numberTriangle;
 
             triangles[i].perimeter = triangles[i].x1 + triangles[i].x2 + triangles[i].x3;
             triangles[i].alpha = Math.abs(Math.cos(((pow(triangles[i].x1, 2) + pow(triangles[i].x3, 2) - pow(triangles[i].x2, 2)) / 2 * triangles[i].x1 * triangles[i].x3)));
@@ -44,14 +98,14 @@ public class Triangles {
                 triangles[i].isosceles = 1;
             } else {
                 System.out.println("Треугольник №" + triangles[i].numberTriangle + " не является равнобедренным.");
-            }
+            }*/
         }
         double averageSquare = 0;
         double max = 0;
         double min = 0;
         int countNormalTriangle = 0;
         int countIsoscelesTriangle = 0;
-
+/*
         // В этом цикле я вычисляю среднюю площадь для обычных треугольников
         for (int i = 0; i < triangles.length; i++) {
             if (triangles[i].isosceles == 0) {
@@ -73,7 +127,7 @@ public class Triangles {
                     }
                 }
             }
-        }
+        }*/
         averageSquare = averageSquare / countNormalTriangle;
         // Выводим теперь эти данные на экран, среднюю площадь треугольников и мин.площ. равнобедренного треугольника.
         System.out.println("Средняя площадь треугольников = " + averageSquare);
@@ -85,13 +139,13 @@ public class Triangles {
             //System.out.println("Введите путь к файлу:");
             ArrayList<Triangle> triangleArrayList = new ArrayList<>();
             triangleArrayList.addAll(Arrays.asList(triangles));
-            BinaryDataSaver.save(triangleArrayList, "d:\\1.txt");
+            FileWork.save(triangleArrayList, "d:\\1.txt");
             //BinaryDataSaver.save(triangleArrayList, wayToFile);
             System.out.println("Файл успешно сохранён!");
         }
     }
 
-    public static void serializeFile(String serializeFileName) {
+/*    public static void serializeFile(String serializeFileName) {
         Triangle saveToFile = new Triangle();
         saveToFile.serialize(this, fileName);
     }
@@ -112,5 +166,5 @@ public class Triangles {
     public static void jacksonDeserializeFile(String jacksonDeserializeFileName) {
         FileWork loadToBase = new FileWork();
         this.examResults = loadToBase.jacksonDeSerialize(examResults, fileName);
-    }
+    }*/
 }

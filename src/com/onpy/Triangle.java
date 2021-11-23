@@ -1,24 +1,34 @@
 package com.onpy;
 
+
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Triangle {
-    long numberTriangle;
+public class Triangle implements Serializable {
+    static final long serialVersionUID = 454564564564564L;
+    //long numberTriangle;
     double x1;
     double x2;
     double x3;
-    double perimeter;
+    /*double perimeter;
     double alpha;
     double betta;
     double gamma;
     double square;
     long isosceles = 0;
-    String y;
+    String y;*/
 
+    public Triangle(double x1, double x2, double x3) {
+        this.setX1(x1);
+        this.setX2(x2);
+        this.setX3(x3);
+    }
+
+    public Triangle(){}
 
     public void setX1(double x1) {
         double trueSide = x1;
-        if(trueSide <= 0) {
+        if (trueSide <= 0) {
             System.out.print("Ошибка ввода. Сторона треугольника не может быть отрицательной! ");
             Scanner scan = null;
             trueSide = scan.nextDouble();
@@ -32,7 +42,7 @@ public class Triangle {
 
     public void setX2(double x2) {
         double trueSide = x2;
-        if(trueSide <= 0) {
+        if (trueSide <= 0) {
             System.out.print("Ошибка ввода. Сторона треугольника не может быть отрицательной! ");
             Scanner scan = null;
             trueSide = scan.nextDouble();
@@ -46,7 +56,7 @@ public class Triangle {
 
     public void setX3(double x3) {
         double trueSide = x3;
-        if(trueSide <= 0) {
+        if (trueSide <= 0) {
             System.out.print("Ошибка ввода. Сторона треугольника не может быть отрицательной! ");
             Scanner scan = null;
             trueSide = scan.nextDouble();
@@ -58,7 +68,7 @@ public class Triangle {
         return x3;
     }
 
-    public double getNumTriangle() {
+  /*  public double getNumTriangle() {
         return numberTriangle;
     }
 
@@ -68,6 +78,13 @@ public class Triangle {
 
     public String getY() {
         return y;
-    }
+    }*/
 
+    @Override
+    public String toString() {
+        return "x1=" + x1 +
+                ", x2=" + x2 +
+                ", x3=" + x3 +
+                '}';
+    }
 }
